@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %} {{ block.super }} {% endblock title %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home_css.css' %}">
+{% endblock style %}
+
+{% block content %}
+    <header id="header" class="alt">
+        <div class="inner">
+            <h1>Blog6109</h1>
+            <p>一個讓我練習django所寫成的簡易部落格 <a href="https://github.com/alvinzhan" target="_blank">about me</a></p>
+        </div>
+    </header>
+    <div id="wrapper">
+        <section id="intro" class="main">
+            <span class="icon fa-diamond major"></span>
+            <h2>{{ intro.title }}</h2>
+            <p>{{ intro.content | linebreaks | truncatechars:78 }}</p>
+            <ul class="actions">
+                <li><a href="{{ intro.get_absolute_url }}" class="button big">More</a></li>
+            </ul>
+        </section>
+        <section class="main items">
+            <article class="item">
+                <header>
+                    <a href="posts/"></a>
+                    <h3>心情點滴</h3>
+                </header>
+                <ul class="actions">
+                    <li><a href="posts/" class="button">More</a></li>
+                </ul>
+            </article>
+            <article class="item">
+                <header>
+                    <a href="posts/"></a>
+                    <h3>技術分享</h3>
+                </header>
+                <ul class="actions">
+                    <li><a href="posts/" class="button">More</a></li>
+                </ul>
+            </article>
+            <article class="item">
+                <header>
+                    <a href="posts/"></a>
+                    <h3>心情點滴</h3>
+                </header>
+                <ul class="actions">
+                    <li><a href="posts/" class="button">More</a></li>
+                </ul>
+            </article>
+            <article class="item">
+                <header>
+                    <a href="posts/"></a>
+                    <h3>技術分享</h3>
+                </header>
+                <ul class="actions">
+                    <li><a href="posts/" class="button">More</a></li>
+                </ul>
+            </article>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="https://www.facebook.com/profile.php?id=100001599978764" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="https://drive.google.com/file/d/1pTMxEkG3sP8CsbQMOskB3_P_pHdp3zw3/preview" target="_blank" class="icon fa-resume"><span class="label">Resume</span></a></li>
+            <li><a href="https://github.com/alvinzhan" target="_blank" class="icon fa-github"><span class="label">Github</span></a></li>
+        </ul>
+    </footer>
+{% endblock content %}
+
+
+
