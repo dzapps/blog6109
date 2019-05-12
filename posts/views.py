@@ -79,7 +79,7 @@ def posts_list(request):
     return render(request, 'post_list.html', content)
 
 def posts_update(request, slug=None):
-    if request.user.is_staff or not request.user.is_superuser:
+    if not request.user.is_staff or not request.user.is_superuser:
         raise Http404
 
     instance = get_object_or_404(Post, slug=slug)
