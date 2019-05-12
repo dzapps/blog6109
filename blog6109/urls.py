@@ -22,9 +22,9 @@ from django.urls import path, re_path
 from posts.views import posts_home
 
 urlpatterns = [
-    re_path(r'^', include('posts.urls', namespace='posts')),
+    re_path(r'^', posts_home),
     re_path(r'^admin/', admin.site.urls),
-    # re_path(r'^posts/', include('posts.urls', namespace='posts')),
+    re_path(r'^posts/', include('posts.urls', namespace='posts')),
 
 ]
 
