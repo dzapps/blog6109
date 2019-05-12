@@ -12,7 +12,7 @@ class PostManager(models.Manager):
         return super(PostManager, self).filter(draft=False).filter(publish__lte=timezone.now())
 
 def upload_location(instance, filename):
-    return '%s/%s'%(instance.id, filename)
+    return '%s/%s'%(instance.user, filename)
 
     # filebase, extension = filename.split('.')         This may break if there is a period in the image name
     # return '%s/%s.%s' %(instance.id, instance.id, extension)

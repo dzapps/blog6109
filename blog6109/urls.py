@@ -17,14 +17,15 @@ from django.conf import settings
 from django.conf.urls import include
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 
 from posts.views import posts_home
 
 urlpatterns = [
-    path(r'admin/', admin.site.urls),
-    path(r'', posts_home),
-    path(r'posts/', posts_home),
+    re_path(r'^$', posts_home),
+    re_path(r'^admin/', admin.site.urls),
+    re_path(r'^posts/', include('posts.urls', namespace='posts')),
+
 ]
 
 if settings.DEBUG:
