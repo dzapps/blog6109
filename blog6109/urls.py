@@ -19,11 +19,11 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
-from posts import views
+from posts.views import posts_home
 
 urlpatterns = [
     path(r'admin/', admin.site.urls),
-    path(r'', include('posts.urls', namespace='posts')),
+    path(r'', posts_home),
     path(r'posts/', include('posts.urls', namespace='posts')),
 ]
 
