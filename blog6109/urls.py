@@ -23,7 +23,7 @@ from posts import views
 
 urlpatterns = [
     path(r'admin/', admin.site.urls),
-    path(r'/', views.posts_home),
+    path(r'', include('posts.urls', namespace='posts')),
     path(r'posts/', include('posts.urls', namespace='posts')),
 ]
 
