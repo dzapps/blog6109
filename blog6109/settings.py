@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '!-+rjggt8eivm5b38o=&(+7awykn=9!b#rhl3&^jk&0^)!og^l'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -74,26 +74,26 @@ WSGI_APPLICATION = 'blog6109.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('DATABASE_NAME'),
-        'USER': os.environ.get('DATABASE_USER'),
-        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
-        'HOST': os.environ.get('DATABASE_HOST'),
-        'PORT': os.environ.get('DATABASE_PORT'),
-    }
-}
-
-# test on my localhost
 # DATABASES = {
-# 'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'website',
-#         'USER': 'alvin_zhan',
-#         'PASSWORD': 'alvin851024',
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': os.environ.get('DATABASE_NAME'),
+#         'USER': os.environ.get('DATABASE_USER'),
+#         'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
+#         'HOST': os.environ.get('DATABASE_HOST'),
+#         'PORT': os.environ.get('DATABASE_PORT'),
 #     }
 # }
+
+# test on my localhost
+DATABASES = {
+'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'website',
+        'USER': 'alvin_zhan',
+        'PASSWORD': 'alvin851024',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -144,4 +144,4 @@ MEDIA_URL = '/media/'
 # use on my localhost
 # MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media_cdn')
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media_cdn', 'media_root')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
