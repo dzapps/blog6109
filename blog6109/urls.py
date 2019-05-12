@@ -24,7 +24,7 @@ from posts.views import posts_home
 urlpatterns = [
     path(r'admin/', admin.site.urls),
     path(r'', posts_home),
-    path(r'posts/', include('posts.urls', namespace='posts')),
+    path(r'posts/', posts_home),
 ]
 
 if settings.DEBUG:
