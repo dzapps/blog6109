@@ -10,6 +10,7 @@
         {% if instance.image %}
             <img src="{{ instance.image.url }}" class="img-responsive">
         {% endif %}
+
         <h1>
             {{ instance.title }}
             {% if instance.draft %}
@@ -19,11 +20,15 @@
                 {{ instance.publish }}
             </small>
         </h1>
+
         {% if instance.user.get_full_name %}
             <p>作者: {{ instance.user.get_full_name }}</p>
         {% else %}
             <p>作者: {{ instance.user }}</p>
         {% endif %}
-            {{ instance.content | linebreaks }}<br>
+
+        <div class="row">
+            <div class="col-sm-12 content-markdown">{{instance.content}}<br></div>
+        </div>
     </div>
 {% endblock content %}
