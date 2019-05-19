@@ -50,12 +50,17 @@
 
         <script type="text/javascript">
             $(document).ready(function() {
+                {#render markdown content#}
                 $(".content-markdown").each(function () {
                     var content = $(this).text()
                     console.log(content)
                     var markedContent = marked(content)
                     console.log(markedContent)
                     $(this).html(markedContent)
+                })
+                {#modify the size of the image in post_detail#}
+                $(".content-markdown img").each(function () {
+                    $(this).addClass("img-responsive")
                 })
             })
         </script>
