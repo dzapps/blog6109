@@ -1,5 +1,6 @@
 dj-static==0.0.6
 Django==2.2
+django-pagedown==1.0.6
 django-uuslug==1.1.8
 gunicorn==19.9.0
 Pillow==6.0.0
