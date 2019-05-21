@@ -1,8 +1,11 @@
 dj-static==0.0.6
 Django==2.2
+django-crispy-forms==1.7.2
+django-markdown-deux==1.0.5
 django-pagedown==1.0.6
 django-uuslug==1.1.8
 gunicorn==19.9.0
+markdown2==2.3.7
 Pillow==6.0.0
 psycopg2==2.7.7
 python-slugify==3.0.2

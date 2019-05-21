@@ -28,7 +28,9 @@
         {% endif %}
 
         <div class="row">
-            <div class="col-sm-12 content-markdown">{{instance.content}}<br></div>
+            <div class="col-sm-12"><br>
+                <div class="post-detail-item">{{ instance.get_markdown }}</div>
+            </div>
         </div>
     </div>
 {% endblock content %}

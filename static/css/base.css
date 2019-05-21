@@ -8,3 +8,9 @@ h1
     text-align: center;
     color: #000000;
 }
+
+.wmd-panel
+{
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+}
