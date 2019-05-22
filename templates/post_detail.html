@@ -30,6 +30,19 @@
         <div class="row">
             <div class="col-sm-12"><br>
                 <div class="post-detail-item">{{ instance.get_markdown }}</div>
+                <hr/>
+                <br/>
+                <div>
+                    <p class="lead">Comments</p>
+                    {% for comment in comments %}
+                        <div class="">
+                            {{ comment.content }}
+                            <br/>
+                            <small>由 {{ comment.user }} | {{ comment.timestamp | timesince }} 前</small>
+                            <hr/>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
