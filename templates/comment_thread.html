@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load urlify %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    留言 | {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+    <div class="col-sm-6 col-sm-offset-3">
+        <blockquote>
+            <p>{{ comment.content }}</p>
+            <footer>
+                由 {{ comment.user }} | {{ comment.timestamp | timesince }} 前
+                {% if comment.children.count > 0 %}
+                    {{ comment.children.count }} Comment {% if comment.children.count > 1 %}s{% endif %}
+                {% endif %}
+            </footer>
+            <div>
+                {% for child_comment in comment.children %}
+                    <blockquote>
+                        <p>{{ child_comment.content }}</p>
+                        <footer>由 {{ child_comment.user }} | {{ child_comment.timestamp | timesince }} 前</footer>
+                    </blockquote>
+                {% endfor %}
+                <form method="POST" action="">{% csrf_token %}
+                    {{ form | crispy }}
+                    <input type="hidden" name="parent_id" value="{{ comment.id }}">
+                    <input type="submit" value="回覆" class="btn btn-default">
+                </form>
+            </div>
+        </blockquote>
+        <hr/>
+    </div>
+{% endblock content %}

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load urlify %}
+{% load crispy_forms_tags %}
 
 {% block title %}
     {{ instance.title }} | {{ block.super }}
@@ -16,6 +17,7 @@
             {% if instance.draft %}
                 <small><span style="color:red">草稿</span></small>
             {% endif %}
+            <br/>
             <small>
                 {{ instance.publish }}
             </small>
@@ -34,13 +36,36 @@
                 <br/>
                 <div>
                     <p class="lead">Comments</p>
+                    <form method="POST" action="">{% csrf_token %}
+                        {{ comment_form | crispy }}
+                        <input type="submit" value="留言" class="btn btn-default">
+                    </form>
+                    <hr/>
                     {% for comment in comments %}
-                        <div class="">
-                            {{ comment.content }}
-                            <br/>
-                            <small>由 {{ comment.user }} | {{ comment.timestamp | timesince }} 前</small>
-                            <hr/>
-                        </div>
+                        <blockquote>
+                            <p>{{ comment.content }}</p>
+                            <footer>
+                                由 {{ comment.user }} | {{ comment.timestamp | timesince }} 前 |
+                                {% if comment.children.count > 0 %}
+                                    {{ comment.children.count }} Comment {% if comment.children.count > 1 %}s|{% endif %}
+                                {% endif %}
+                                <a class="comment-reply-btn" href="#">回覆</a> | <a class="" href="{{ comment.get_absolute_url }}">留言</a>
+                            </footer>
+                            <div class="comment-reply">
+                                {% for child_comment in comment.children %}
+                                    <blockquote>
+                                        <p>{{ child_comment.content }}</p>
+                                        <footer>由 {{ child_comment.user }} | {{ child_comment.timestamp | timesince }} 前</footer>
+                                    </blockquote>
+                                {% endfor %}
+                                <form method="POST" action="">{% csrf_token %}
+                                    {{ comment_form | crispy }}
+                                    <input type="hidden" name="parent_id" value="{{ comment.id }}">
+                                    <input type="submit" value="回覆" class="btn btn-default">
+                                </form>
+                            </div>
+                        </blockquote>
+                        <hr/>
                     {% endfor %}
                 </div>
             </div>
