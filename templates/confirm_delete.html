@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load urlify %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    留言 | {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+    <div class="col-sm-6 col-sm-offset-3">
+        <h1>刪除留言</h1>
+        <form method="POST" action="">{% csrf_token %}
+            <p>確定刪除 "{{ object.content }}"?</p>
+            <input type="submit" value="確定" class="btn btn-warning">
+            <a href="{{ object.get_absolute_url }}" class="btn btn-default">取消</a>
+        </form>
+        <hr/>
+    </div>
+{% endblock content %}

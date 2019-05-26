@@ -19,6 +19,11 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, re_path
 
+from accounts.views import (
+    login_view,
+    register_view,
+    logout_view,
+)
 from posts.views import posts_home
 
 urlpatterns = [
@@ -26,6 +31,9 @@ urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
     re_path(r'^comments/', include('comments.urls', namespace='comments')),
     re_path(r'^posts/', include('posts.urls', namespace='posts')),
+    re_path(r'^login/', login_view, name='login'),
+    re_path(r'^register/', register_view, name='register'),
+    re_path(r'^logout/', login_view, name='logout'),
 
 ]
 

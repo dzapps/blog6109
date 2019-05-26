@@ -24,17 +24,26 @@
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         {% endblock style %}
 
-        {% block head_extra %}
-            
-        {% endblock head_extra %}
-
+        {% block head_extra %}        {% endblock head_extra %}
     </head>
     <body>
         {% include 'message_display.html' %}
-        <div class="container">
-            {% block content %}
 
-            {% endblock content %}
+        <div class="container">
+            {% block navigation %}
+                <ol class="breadcrumb">
+                    <li><a href="/">首頁</a></li>
+                    {% block post_detail_link %}{% endblock post_detail_link %}
+
+                    {% if not request.user.is_authenticated %}
+                        <li class="pull-right"><a href="{% url 'register' %}">註冊</a></li>
+                        <li class="pull-right"><a href="{% url 'login' %}">登入</a></li>
+                    {% else %}
+                        <li class="pull-right"><a href="{% url 'logout' %}">登出</a></li>
+                    {% endif %}
+                </ol>
+            {% endblock navigation %}
+            {% block content %}{% endblock content %}
         </div>
 
         <script
