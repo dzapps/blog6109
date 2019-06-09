@@ -147,7 +147,7 @@ def posts_interview_list(request):
 
     }
 
-    return render(request, 'post_interview.html', content)
+    return render(request, 'post_list.html', content)
 
 def posts_update(request, slug=None):
     if not request.user.is_staff or not request.user.is_superuser:
