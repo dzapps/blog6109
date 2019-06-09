@@ -89,9 +89,9 @@ def posts_detail(request, slug=None):
 
 def posts_list(request):
     if request.user.is_staff or request.user.is_superuser:
-        queryset_list = Post.objects.all()
+        queryset_list = Post.objects.emotion(True)
     else:
-        queryset_list = Post.objects.active()
+        queryset_list = Post.objects.emotion(False)
 
     query = request.GET.get('q')
     if query:
@@ -117,6 +117,37 @@ def posts_list(request):
     }
 
     return render(request, 'post_list.html', content)
+
+def posts_interview_list(request):
+    if request.user.is_staff or request.user.is_superuser:
+        queryset_list = Post.objects.interview(True)
+    else:
+        queryset_list = Post.objects.interview(False)
+
+    query = request.GET.get('q')
+    if query:
+        queryset_list = queryset_list.filter(
+            Q(title__icontains=query) |
+            Q(content__icontains=query) |
+            Q(user__first_name__icontains=query) |
+            Q(user__last_name__icontains=query)
+        ).distinct()
+
+    paginator = Paginator(queryset_list, 5)  # Show 5 contacts per page
+
+    page_request_var = 'page'
+    page = request.GET.get(page_request_var)
+    queryset = paginator.get_page(page)
+
+    content = {
+        'object_list': queryset,
+        'title': 'List',
+        'page_request_var': page_request_var,
+        'today': timezone.now().date(),
+
+    }
+
+    return render(request, 'post_interview.html', content)
 
 def posts_update(request, slug=None):
     if not request.user.is_staff or not request.user.is_superuser:

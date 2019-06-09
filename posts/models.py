@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from django.db.models import Q
 from django.db.models.signals import pre_save
 from django.urls import reverse
 from django.utils import timezone
@@ -13,8 +14,33 @@ from comments.models import Comment
 # Create your models here.
 
 class PostManager(models.Manager):
-    def active(self, *args, **kwargs):
-        return super(PostManager, self).filter(draft=False).filter(publish__lte=timezone.now())
+    def emotion(self, *args, **kwargs):
+        if args[0]:
+            return super(PostManager, self).filter(
+                Q(draft=True) |
+                ~Q(slug__icontains='interview')
+
+            )
+        else:
+            return super(PostManager, self).filter(
+                Q(draft=False) &
+                Q(publish__lte=timezone.now()) &
+                ~Q(slug__icontains='interview')
+
+            )
+
+    def interview(self, *args, **kwargs):
+        if args[0]:
+            return super(PostManager, self).filter(
+                Q(draft=True) |
+                Q(slug__icontains='interview')
+            )
+        else:
+            return super(PostManager, self).filter(
+                Q(draft=False) &
+                Q(publish__lte=timezone.now()) &
+                Q(slug__icontains='interview')
+            )
 
 def upload_location(instance, filename):
     return '%s/%s'%(instance.user, filename)
