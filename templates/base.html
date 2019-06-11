@@ -33,7 +33,9 @@
             {% block navigation %}
                 <ol class="breadcrumb">
                     <li><a href="/">首頁</a></li>
-                    {% block post_detail_link %}{% endblock post_detail_link %}
+                    {% block post_list_link %}
+                        <li><a href="{% url 'posts:create' %}">建立貼文</a></li>
+                    {% endblock post_list_link %}
 
                     {% if not request.user.is_authenticated %}
                         <li class="pull-right"><a href="{% url 'register' %}">註冊</a></li>

@@ -13,7 +13,7 @@ from .models import Post
 # Create your views here.
 
 def posts_home(request):
-    intro = get_object_or_404(Post, title='設站原由')
+    intro = get_object_or_404(Post, title='設站緣由')
     content = {
         'intro': intro,
     }
@@ -29,7 +29,7 @@ def posts_create(request):
         instance.user = request.user
         instance.save()
         # message success
-        messages.success(request, 'Successfully Created')
+        messages.success(request, '成功建立！')
         return HttpResponseRedirect(instance.get_absolute_url())
 
     content = {
@@ -39,6 +39,8 @@ def posts_create(request):
 
 def posts_detail(request, slug=None):
     instance = get_object_or_404(Post, slug=slug)
+
+    previous_page = request.META.get('HTTP_REFERER', '/')
 
     if instance.draft or instance.publish > timezone.now():
         if not request.user.is_staff or not request.user.is_superuser:
@@ -83,6 +85,8 @@ def posts_detail(request, slug=None):
         'instance': instance,
         'comments': comments,
         'comment_form': form,
+        'previous': previous_page,
+
     }
 
     return render(request, 'post_detail.html', content)
@@ -110,7 +114,7 @@ def posts_list(request):
 
     content = {
         'object_list': queryset,
-        'title': 'List',
+        'title': '心情點滴',
         'page_request_var': page_request_var,
         'today': timezone.now().date(),
 
@@ -141,7 +145,7 @@ def posts_interview_list(request):
 
     content = {
         'object_list': queryset,
-        'title': 'List',
+        'title': '面試心得',
         'page_request_var': page_request_var,
         'today': timezone.now().date(),
 
@@ -160,7 +164,7 @@ def posts_update(request, slug=None):
         instance = form.save(commit=False)
         instance.save()
         # message success
-        messages.success(request, 'Item saved')
+        messages.success(request, '已儲存！')
         return HttpResponseRedirect(instance.get_absolute_url())
 
     content = {
@@ -177,5 +181,5 @@ def posts_delete(request, slug=None):
 
     instance = get_object_or_404(Post, slug=slug)
     instance.delete()
-    messages.success(request, 'Successfully deleted!')
+    messages.success(request, '成功刪除！')
     return redirect('posts:list')

@@ -13,9 +13,9 @@ app_name = 'posts'
 urlpatterns = [
     re_path(r'^list/$', posts_list, name='list'),
     re_path(r'^interview_list/$', posts_interview_list, name='interview_list'),
-    re_path(r'^create/$', posts_create),
-    re_path(r'^(?P<slug>[\w-]+)/edit$', posts_update, name='update'),
+    re_path(r'^create/$', posts_create, name='create'),
+    re_path(r'^(?P<slug>[\w-]+)/edit/$', posts_update, name='update'),
     re_path(r'^(?P<slug>[\w-]+)/$', posts_detail, name='detail'),
-    re_path(r'^(?P<slug>[\w-]+)/delete/$', posts_delete),
+    re_path(r'^(?P<slug>[\w-]+)/delete/$', posts_delete, name='delete'),
 
 ]

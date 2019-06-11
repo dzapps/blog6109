@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Posts | {{ block.super }}
+    文章列表 | {{ block.super }}
 {% endblock title %}
+
+{% block post_list_link %}
+    {% if request.user.is_authenticated %}
+        {{ block.super }}
+    {% endif %}
+{% endblock post_list_link %}
 
 {% block content %}
     <div class="col-sm-6 col-sm-offset-3">

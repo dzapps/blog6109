@@ -6,6 +6,15 @@
     {{ instance.title }} | {{ block.super }}
 {% endblock title %}
 
+{% block post_list_link %}
+    {% if request.user.is_authenticated %}
+        {{ block.super }}
+        <li><a href="edit">更改貼文</a></li>
+        <li><a href="{{ request.path }}delete/">刪除貼文</a></li>
+    {% endif %}
+    <li><a href="{{ previous }}">返回</a></li>
+{% endblock post_list_link %}
+
 {% block content %}
     <div class="col-sm-6 col-sm-offset-3">
         {% if instance.image %}
@@ -35,11 +44,11 @@
                 <hr/>
                 <br/>
                 <div>
-                    <p class="lead">Comments</p>
+                    <p class="lead">留言</p>
                     {% if request.user.is_authenticated %}
                         <form method="POST" action="">{% csrf_token %}
                             {{ comment_form | crispy }}
-                            <input type="submit" value="留言" class="btn btn-default">
+                            <input type="submit" value="回覆" class="btn btn-default">
                         </form>
                     {% else %}
                         <p>留言請先登入</p>

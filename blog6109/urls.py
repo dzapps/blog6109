@@ -33,7 +33,7 @@ urlpatterns = [
     re_path(r'^posts/', include('posts.urls', namespace='posts')),
     re_path(r'^login/', login_view, name='login'),
     re_path(r'^register/', register_view, name='register'),
-    re_path(r'^logout/', login_view, name='logout'),
+    re_path(r'^logout/', logout_view, name='logout'),
 
 ]
 
