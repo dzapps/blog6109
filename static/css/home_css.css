@@ -1106,6 +1106,7 @@
 				-webkit-transition: -webkit-transform 0.2s ease;
 				-ms-transition: -ms-transform 0.2s ease;
 				transition: transform 0.2s ease;
+				background-image: url("images/banner.jpg");
 				background-size: cover;
 				background-position: center;
 				background-repeat: no-repeat;

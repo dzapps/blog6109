@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f99fef3c-09de-47e3-9e13-03e20ecf9b22" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/blog6109/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog6109/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/home_css.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/home_css.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,14 +40,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="css" value="136" />
+          <entry key="css" value="138" />
           <entry key="html" value="4845" />
           <entry key="py" value="9343" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="136" />
+          <entry key="CSS" value="138" />
           <entry key="HTML" value="4845" />
           <entry key="Python" value="9342" />
           <entry key="RegExp" value="1" />
@@ -54,14 +55,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="css" value="13" />
+          <entry key="css" value="14" />
           <entry key="html" value="58" />
           <entry key="py" value="53" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="13" />
+          <entry key="CSS" value="14" />
           <entry key="HTML" value="58" />
           <entry key="Python" value="53" />
         </counts>
@@ -70,11 +71,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/blog6109/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="47">
-              <caret line="87" selection-start-line="87" selection-end-line="95" selection-end-column="1" />
+            <state relative-caret-position="406">
+              <caret line="105" column="1" lean-forward="true" selection-start-line="105" selection-start-column="1" selection-end-line="105" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/static/css/home_css.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="205">
+              <caret line="1108" column="59" lean-forward="true" selection-start-line="1108" selection-start-column="59" selection-end-line="1108" selection-end-column="59" />
             </state>
           </provider>
         </entry>
@@ -172,6 +182,9 @@
       <find>center</find>
       <find>copy</find>
       <find>footer</find>
+      <find>article</find>
+      <find>main</find>
+      <find>background-image:</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -183,7 +196,6 @@
         <option value="$PROJECT_DIR$/posts/templatetags/__init__.py" />
         <option value="$PROJECT_DIR$/posts/templatetags/urlify.py" />
         <option value="$USER_HOME$/blog6109(on_heroku)/templates/home.html" />
-        <option value="$PROJECT_DIR$/static/css/home_css.css" />
         <option value="$PROJECT_DIR$/blog6109/wsgi.py" />
         <option value="$PROJECT_DIR$/posts/form.py" />
         <option value="$USER_HOME$/blog6109(on_heroku)/templates/base.html" />
@@ -209,6 +221,7 @@
         <option value="$PROJECT_DIR$/posts/views.py" />
         <option value="$PROJECT_DIR$/templates/form.html" />
         <option value="$PROJECT_DIR$/blog6109/settings.py" />
+        <option value="$PROJECT_DIR$/static/css/home_css.css" />
       </list>
     </option>
   </component>
@@ -352,9 +365,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.176209" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.176209" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -368,7 +380,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32941177" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32941177" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -422,13 +434,6 @@
     </entry>
     <entry file="file://$USER_HOME$/blog6109(on_heroku)/static/css/home_css.css">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/home_css.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2322">
-          <caret line="1530" column="9" selection-start-line="1530" selection-start-column="9" selection-end-line="1530" selection-end-column="9" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$USER_HOME$/Downloads/templated-epilogue/index.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -662,8 +667,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/blog6109/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="47">
-          <caret line="87" selection-start-line="87" selection-end-line="95" selection-end-column="1" />
+        <state relative-caret-position="406">
+          <caret line="105" column="1" lean-forward="true" selection-start-line="105" selection-start-column="1" selection-end-line="105" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/home_css.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="1108" column="59" lean-forward="true" selection-start-line="1108" selection-start-column="59" selection-end-line="1108" selection-end-column="59" />
         </state>
       </provider>
     </entry>
