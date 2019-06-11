@@ -41,14 +41,14 @@
         <counts>
           <entry key="css" value="138" />
           <entry key="html" value="4845" />
-          <entry key="py" value="9343" />
+          <entry key="py" value="9348" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="138" />
           <entry key="HTML" value="4845" />
-          <entry key="Python" value="9342" />
+          <entry key="Python" value="9347" />
           <entry key="RegExp" value="1" />
         </counts>
       </usages-collector>
@@ -73,8 +73,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/blog6109/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="98" selection-start-line="98" selection-start-column="2" selection-end-line="105" selection-end-column="3" />
+            <state relative-caret-position="377">
+              <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -674,8 +674,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/blog6109/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="98" selection-start-line="98" selection-start-column="2" selection-end-line="105" selection-end-column="3" />
+        <state relative-caret-position="377">
+          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
         </state>
       </provider>
     </entry>
