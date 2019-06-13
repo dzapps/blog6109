@@ -14,32 +14,19 @@ from comments.models import Comment
 # Create your models here.
 
 class PostManager(models.Manager):
-    def emotion(self, *args, **kwargs):
+    def query(self, *args, **kwargs):
         if args[0]:
             return super(PostManager, self).filter(
                 Q(draft=True) |
-                ~Q(slug__icontains='interview')
+                Q(slug__icontains=args[1])
 
             )
         else:
             return super(PostManager, self).filter(
                 Q(draft=False) &
                 Q(publish__lte=timezone.now()) &
-                ~Q(slug__icontains='interview')
+                Q(slug__icontains=args[1])
 
-            )
-
-    def interview(self, *args, **kwargs):
-        if args[0]:
-            return super(PostManager, self).filter(
-                Q(draft=True) |
-                Q(slug__icontains='interview')
-            )
-        else:
-            return super(PostManager, self).filter(
-                Q(draft=False) &
-                Q(publish__lte=timezone.now()) &
-                Q(slug__icontains='interview')
             )
 
 def upload_location(instance, filename):
