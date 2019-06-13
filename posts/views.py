@@ -185,7 +185,7 @@ def posts_interview_list(request):
 
     return render(request, 'post_list.html', content)
 
-def post_intern_list(request):
+def posts_intern_list(request):
     if request.user.is_staff or request.user.is_superuser:
         queryset_list = Post.objects.query(True, 'intern')
     else:

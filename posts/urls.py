@@ -2,6 +2,7 @@ from django.urls import path, re_path
 
 from .views import (
     posts_list,
+    posts_intern_list,
     posts_interview_list,
     posts_create,
     posts_detail,
@@ -12,6 +13,7 @@ from .views import (
 app_name = 'posts'
 urlpatterns = [
     re_path(r'^list/$', posts_list, name='list'),
+    re_path(r'^intern_list/$', posts_intern_list, name='intern_list'),
     re_path(r'^interview_list/$', posts_interview_list, name='interview_list'),
     re_path(r'^create/$', posts_create, name='create'),
     re_path(r'^(?P<slug>[\w-]+)/edit/$', posts_update, name='update'),
