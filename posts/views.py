@@ -123,11 +123,11 @@ def posts_delete(request, slug=None):
     messages.success(request, '成功刪除！')
     return redirect('posts:list')
 
-def posts_list(request):
+def posts_list(request, category=None):
     if request.user.is_staff or request.user.is_superuser:
-        queryset_list = Post.objects.query(True, 'emotion')
+        queryset_list = Post.objects.query(True, category)
     else:
-        queryset_list = Post.objects.query(False, 'emotion')
+        queryset_list = Post.objects.query(False, category)
 
     query = request.GET.get('q')
     if query:
@@ -154,64 +154,95 @@ def posts_list(request):
 
     return render(request, 'post_list.html', content)
 
-def posts_interview_list(request):
-    if request.user.is_staff or request.user.is_superuser:
-        queryset_list = Post.objects.query(True, 'interview')
-    else:
-        queryset_list = Post.objects.query(False, 'interview')
-
-    query = request.GET.get('q')
-    if query:
-        queryset_list = queryset_list.filter(
-            Q(title__icontains=query) |
-            Q(content__icontains=query) |
-            Q(user__first_name__icontains=query) |
-            Q(user__last_name__icontains=query)
-        ).distinct()
-
-    paginator = Paginator(queryset_list, 5)  # Show 5 contacts per page
-
-    page_request_var = 'page'
-    page = request.GET.get(page_request_var)
-    queryset = paginator.get_page(page)
-
-    content = {
-        'object_list': queryset,
-        'title': '面試心得',
-        'page_request_var': page_request_var,
-        'today': timezone.now().date(),
-
-    }
-
-    return render(request, 'post_list.html', content)
-
-def posts_intern_list(request):
-    if request.user.is_staff or request.user.is_superuser:
-        queryset_list = Post.objects.query(True, 'intern')
-    else:
-        queryset_list = Post.objects.query(False, 'intern')
-
-    query = request.GET.get('q')
-    if query:
-        queryset_list = queryset_list.filter(
-            Q(title__icontains=query) |
-            Q(content__icontains=query) |
-            Q(user__first_name__icontains=query) |
-            Q(user__last_name__icontains=query)
-        ).distinct()
-
-    paginator = Paginator(queryset_list, 5)  # Show 5 contacts per page
-
-    page_request_var = 'page'
-    page = request.GET.get(page_request_var)
-    queryset = paginator.get_page(page)
-
-    content = {
-        'object_list': queryset,
-        'title': '暑期實習',
-        'page_request_var': page_request_var,
-        'today': timezone.now().date(),
-
-    }
-
-    return render(request, 'post_list.html', content)
+# def posts_tech_list(request):
+#     if request.user.is_staff or request.user.is_superuser:
+#         queryset_list = Post.objects.query(True, 'tech')
+#     else:
+#         queryset_list = Post.objects.query(False, 'tech')
+#
+#     query = request.GET.get('q')
+#     if query:
+#         queryset_list = queryset_list.filter(
+#             Q(title__icontains=query) |
+#             Q(content__icontains=query) |
+#             Q(user__first_name__icontains=query) |
+#             Q(user__last_name__icontains=query)
+#         ).distinct()
+#
+#     paginator = Paginator(queryset_list, 5)  # Show 5 contacts per page
+#
+#     page_request_var = 'page'
+#     page = request.GET.get(page_request_var)
+#     queryset = paginator.get_page(page)
+#
+#     content = {
+#         'object_list': queryset,
+#         'title': '心情點滴',
+#         'page_request_var': page_request_var,
+#         'today': timezone.now().date(),
+#
+#     }
+#
+#     return render(request, 'post_list.html', content)
+#
+# def posts_interview_list(request):
+#     if request.user.is_staff or request.user.is_superuser:
+#         queryset_list = Post.objects.query(True, 'interview')
+#     else:
+#         queryset_list = Post.objects.query(False, 'interview')
+#
+#     query = request.GET.get('q')
+#     if query:
+#         queryset_list = queryset_list.filter(
+#             Q(title__icontains=query) |
+#             Q(content__icontains=query) |
+#             Q(user__first_name__icontains=query) |
+#             Q(user__last_name__icontains=query)
+#         ).distinct()
+#
+#     paginator = Paginator(queryset_list, 5)  # Show 5 contacts per page
+#
+#     page_request_var = 'page'
+#     page = request.GET.get(page_request_var)
+#     queryset = paginator.get_page(page)
+#
+#     content = {
+#         'object_list': queryset,
+#         'title': '面試心得',
+#         'page_request_var': page_request_var,
+#         'today': timezone.now().date(),
+#
+#     }
+#
+#     return render(request, 'post_list.html', content)
+#
+# def posts_intern_list(request):
+#     if request.user.is_staff or request.user.is_superuser:
+#         queryset_list = Post.objects.query(True, 'intern')
+#     else:
+#         queryset_list = Post.objects.query(False, 'intern')
+#
+#     query = request.GET.get('q')
+#     if query:
+#         queryset_list = queryset_list.filter(
+#             Q(title__icontains=query) |
+#             Q(content__icontains=query) |
+#             Q(user__first_name__icontains=query) |
+#             Q(user__last_name__icontains=query)
+#         ).distinct()
+#
+#     paginator = Paginator(queryset_list, 5)  # Show 5 contacts per page
+#
+#     page_request_var = 'page'
+#     page = request.GET.get(page_request_var)
+#     queryset = paginator.get_page(page)
+#
+#     content = {
+#         'object_list': queryset,
+#         'title': '暑期實習',
+#         'page_request_var': page_request_var,
+#         'today': timezone.now().date(),
+#
+#     }
+#
+#     return render(request, 'post_list.html', content)
