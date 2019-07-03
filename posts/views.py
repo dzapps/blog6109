@@ -115,13 +115,15 @@ def posts_update(request, slug=None):
     return render(request, 'post_form.html', content)
 
 def posts_delete(request, slug=None):
+    category = slug.split('_')[0]
+
     if not request.user.is_staff or not request.user.is_superuser:
         raise Http404
 
     instance = get_object_or_404(Post, slug=slug)
     instance.delete()
     messages.success(request, '成功刪除！')
-    return redirect('posts:list')
+    return redirect('/posts/' + category + '/list/')
 
 def posts_list(request, category=None):
     if request.user.is_staff or request.user.is_superuser:
