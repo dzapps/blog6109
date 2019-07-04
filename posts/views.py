@@ -28,7 +28,6 @@ def posts_create(request):
         instance = form.save(commit=False)
         instance.user = request.user
         instance.save()
-        # message success
         messages.success(request, '成功建立！')
         return HttpResponseRedirect(instance.get_absolute_url())
 
@@ -102,7 +101,6 @@ def posts_update(request, slug=None):
     if form.is_valid():
         instance = form.save(commit=False)
         instance.save()
-        # message success
         messages.success(request, '已儲存！')
         return HttpResponseRedirect(instance.get_absolute_url())
 
@@ -126,6 +124,13 @@ def posts_delete(request, slug=None):
     return redirect('/posts/' + category + '/list/')
 
 def posts_list(request, category=None):
+    title = {
+        'emotion':'心情點滴',
+        'tech': '技術分享',
+        'interview': '面試心得',
+        'intern': '暑期實習',
+    }
+
     if request.user.is_staff or request.user.is_superuser:
         queryset_list = Post.objects.query(True, category)
     else:
@@ -148,7 +153,7 @@ def posts_list(request, category=None):
 
     content = {
         'object_list': queryset,
-        'title': '心情點滴',
+        'title': title[category],
         'page_request_var': page_request_var,
         'today': timezone.now().date(),
 
