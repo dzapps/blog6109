@@ -13,7 +13,7 @@ from .models import Post
 # Create your views here.
 
 def posts_home(request):
-    intro = get_object_or_404(Post, title='設站緣由')
+    intro = get_object_or_404(Post, title='設站原由')
     content = {
         'intro': intro,
     }
@@ -28,19 +28,17 @@ def posts_create(request):
         instance = form.save(commit=False)
         instance.user = request.user
         instance.save()
-        messages.success(request, '成功建立！')
+        # message success
+        messages.success(request, 'Successfully Created')
         return HttpResponseRedirect(instance.get_absolute_url())
 
     content = {
         'form': form,
-        'title': '建立貼文',
     }
     return render(request, 'post_form.html', content)
 
 def posts_detail(request, slug=None):
     instance = get_object_or_404(Post, slug=slug)
-
-    previous_page = request.META.get('HTTP_REFERER', '/')
 
     if instance.draft or instance.publish > timezone.now():
         if not request.user.is_staff or not request.user.is_superuser:
@@ -85,56 +83,15 @@ def posts_detail(request, slug=None):
         'instance': instance,
         'comments': comments,
         'comment_form': form,
-        'previous': previous_page,
-
     }
 
     return render(request, 'post_detail.html', content)
 
-def posts_update(request, slug=None):
-    if not request.user.is_staff or not request.user.is_superuser:
-        raise Http404
-
-    instance = get_object_or_404(Post, slug=slug)
-
-    form = PostForm(request.POST or None, request.FILES or None, instance=instance)
-    if form.is_valid():
-        instance = form.save(commit=False)
-        instance.save()
-        messages.success(request, '已儲存！')
-        return HttpResponseRedirect(instance.get_absolute_url())
-
-    content = {
-        'title': instance.title,
-        'instance': instance,
-        'form': form,
-    }
-
-    return render(request, 'post_form.html', content)
-
-def posts_delete(request, slug=None):
-    category = slug.split('_')[0]
-
-    if not request.user.is_staff or not request.user.is_superuser:
-        raise Http404
-
-    instance = get_object_or_404(Post, slug=slug)
-    instance.delete()
-    messages.success(request, '成功刪除！')
-    return redirect('/posts/' + category + '/list/')
-
-def posts_list(request, category=None):
-    title = {
-        'emotion':'心情點滴',
-        'tech': '技術分享',
-        'interview': '面試心得',
-        'intern': '暑期實習',
-    }
-
+def posts_list(request):
     if request.user.is_staff or request.user.is_superuser:
-        queryset_list = Post.objects.query(True, category)
+        queryset_list = Post.objects.all()
     else:
-        queryset_list = Post.objects.query(False, category)
+        queryset_list = Post.objects.active()
 
     query = request.GET.get('q')
     if query:
@@ -153,10 +110,41 @@ def posts_list(request, category=None):
 
     content = {
         'object_list': queryset,
-        'title': title[category],
+        'title': 'List',
         'page_request_var': page_request_var,
         'today': timezone.now().date(),
 
     }
 
     return render(request, 'post_list.html', content)
+
+def posts_update(request, slug=None):
+    if not request.user.is_staff or not request.user.is_superuser:
+        raise Http404
+
+    instance = get_object_or_404(Post, slug=slug)
+
+    form = PostForm(request.POST or None, request.FILES or None, instance=instance)
+    if form.is_valid():
+        instance = form.save(commit=False)
+        instance.save()
+        # message success
+        messages.success(request, 'Item saved')
+        return HttpResponseRedirect(instance.get_absolute_url())
+
+    content = {
+        'title': instance.title,
+        'instance': instance,
+        'form': form,
+    }
+
+    return render(request, 'post_form.html', content)
+
+def posts_delete(request, slug=None):
+    if not request.user.is_staff or not request.user.is_superuser:
+        raise Http404
+
+    instance = get_object_or_404(Post, slug=slug)
+    instance.delete()
+    messages.success(request, 'Successfully deleted!')
+    return redirect('posts:list')
